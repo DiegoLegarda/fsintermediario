@@ -1,73 +1,44 @@
-class Persona{        
-    constructor(n, a, e, s, p, al){        
-        this.nombre=n;
-        this.apellido=a;
-        this.edad=e;
-        this.sexo=s;
-        this.peso=p;
-        this.altura=al;
-        this.identificacion=12554849;                
-    }
-    obtenerIMC =function(x,y){
-        let resultado;
-        return resultado=x/(y*y);   
-    }
 
-  get _identificacion(){
-    return this.identificacion;
-  }
-  desplegarIMC(){    
-    console.log(this.obtenerIMC(this.peso,this.altura));
-  }
-    get Nombre(){
-        return this.nombre;
+function validarNombre(){
+    let nombre=document.getElementById("nombre").value;
+    console.log(nombre);
+    let formato=/^[a-zA-Z]{3}$/;
+    if(nombre==""){
+        document.getElementById("errorNombre").style.display="block";
+        document.getElementById("errorNombre").innerHTML="El campo es obligatorio";
     }
-    set Nombre(newNombre){
-        this.nombre=newNombre;
-    }
-    get Edad(){
-        return this.edad;
-    }
-    set Edad(edad){
-        this.edad=edad;
-    }
-
-    Saludar(){
-        console.log(`Hola soy ${this.nombre} y tengo ${this.edad} años`);
-       // console.log("Hola soy " + this.nombre + "y tengo" + this.edad +"años");
-    }
-
-}
-
-class Estudiante extends Persona{
-    constructor(nombre, apellido, edad, carrera){
-        super(nombre, apellido,edad);
-        this.carrera=carrera;
-    }
-    Saludar(){
-        console.log(`Hola soy ${this.nombre}, tengo ${this.edad} años y estudio ${this.carrera}`);
+    else{ if(!formato.test(nombre)){
+        document.getElementById("errorNombre").style.display="block";
+        document.getElementById("errorNombre").innerHTML="Ingrese caracteres válidos (solo letras)";
+        }
+        else{
+            document.getElementById("errorNombre").style.display="none";        
+        }       
     }
 }
 
+function validarTelefono(){
+    let telefono=document.getElementById("telefono").value;
+    console.log(telefono);
+    let formato=/^3[0-9]{2}-[0-9]{4}-[0-9]{3}$/;
+    if(telefono==""){
+        document.getElementById("errorTelefono").style.display="block";
+        document.getElementById("errorTelefono").innerHTML="El campo es obligatorio";
+    }
+    else{ if(!formato.test(telefono)){
+        document.getElementById("errorTelefono").style.display="block";
+        document.getElementById("errorTelefono").innerHTML="El formato debe ser 3XX-XXXX-XXX";
+        }
+        else{
+            document.getElementById("errorTelefono").style.display="none";        
+        }       
+    }
+}
 
+document.getElementById("nombre").addEventListener("blur",validarNombre);
+document.getElementById("telefono").addEventListener("blur",validarTelefono);
 
-
-let persona1=new Persona("Juan","Perez",20,"m",80,173);
-persona1.Saludar();
-persona1.desplegarIMC();
-let IMC=persona1.obtenerIMC(persona1.peso,persona1.altura);
-console.log(IMC);
-//persona1.setEdad(30);
-/*
-console.log(persona1.nombre);
-persona1.Saludar();
-
-console.log(persona1._identificacion);
-
-const estudiante1=new Estudiante("Juan","Perez",20,"Ing. Física");
-console.log(estudiante1.nombre);
-console.log(estudiante1.carrera);
-estudiante1.Saludar();
-
-console.log(persona1._identificacion);
-console.log(persona1.obtenerIdentificacion(5,5));*/
+function enviarFormulario(){
+    console.log("Enviando formulario");
+}
+document.getElementById("btnEnviar").addEventListener("click",enviarFormulario);
