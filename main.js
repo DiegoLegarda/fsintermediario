@@ -1,43 +1,126 @@
-function validarNombre(){
-    let nombre=document.getElementById("nombre").value;
-    console.log(nombre);
-    let formato=/^[a-zA-Z]{3}$/;
-    if(nombre==""){
-        document.getElementById("errorNombre").style.display="block";
-        document.getElementById("errorNombre").innerHTML="El campo es obligatorio";
+/*
+const frutas=['manzana','pera','uva','sandia','melon'];
+console.log(frutas);
+console.log(frutas.length);
+frutas.push('platano');
+console.log(frutas);
+frutas.pop();
+console.log(frutas);
+frutas.shift();
+console.log(frutas);
+frutas.unshift('platano');
+console.log(frutas);
+frutas.sort();
+console.log(frutas);
+frutas.reverse();
+console.log(frutas);
+frutas.splice(1,2);
+console.log(frutas);
+frutas.splice(1,0,'platano','mango');
+console.log(frutas);
+const frutas2=frutas.toSpliced(1,2);
+console.log(frutas2);
+console.log(frutas);
+frutas.splice(3,0,'maracuya');
+console.log(frutas);
+let elemento=frutas.pop();
+console.log(elemento); 
+let elemento2=frutas.shift();
+console.log(elemento2); 
+let cadena=frutas.toString();
+console.log(cadena); 
+let cadena2=frutas.join(' - ');
+console.log(cadena2);
+let cadena3=frutas.concat(frutas2);
+console.log(cadena3);
+
+
+console.log(cadena3);
+let cadena4=cadena3.slice(4,5);
+console.log(cadena4); 
+
+const Persona={nombre:"Juan",apellido:"Perez",edad:20,fechaNacimiento:"17/11/1996"};
+console.log(Persona);
+console.log(Persona.nombre);
+console.log(Persona.apellido);
+console.log(Persona.edad);
+console.log(Persona.fechaNacimiento);
+Persona.edad=21;
+console.log(Persona);
+Persona.edad=null;
+console.log(Persona);
+
+
+const arreglobidimensional=[[1,2,3],[4,5,6],[7,8,9]];
+let arreglounidimensional=arreglobidimensional.flat();
+console.log(arreglobidimensional);
+console.log(arreglounidimensional);
+*/
+/*
+class Nodo{
+    constructor(valor){
+        this.valor=valor;
+        this.siguiente=null;
     }
-    else{ if(!formato.test(nombre)){
-        document.getElementById("errorNombre").style.display="block";
-        document.getElementById("errorNombre").innerHTML="Ingrese caracteres válidos (solo letras)";
+}
+let primero=null;
+
+function agregarElemento(valor){
+    let nuevo=new Nodo(valor);
+   nuevo.siguiente=primero;
+   primero=nuevo;
+}
+
+function mostrar(){
+    let actual=primero;
+    while(actual!=null){
+        console.log(actual.valor);
+        actual=actual.siguiente;
+    }
+}
+
+function eliminar(){
+    primero=primero.siguiente;
+}
+
+
+agregarElemento(15);
+agregarElemento(20);
+agregarElemento(25);
+  
+mostrar();
+console.log(primero);
+*/
+class Nodo{
+    constructor(valor){
+        this.valor=valor;
+        this.siguiente=null;
+    }
+}
+let primero=null;
+ 
+class Pila{
+    constructor(){
+        this.tope=null;
+    }
+
+    agregarElementoPila(valor){
+        let nuevo=new Nodo(valor);
+        nuevo.siguiente=this.tope;
+        this.tope=nuevo;
+    }
+    imprimir(){
+        let actual=this.tope;
+        while(actual!=null){
+            console.log(actual.valor);
+            actual=actual.siguiente;
         }
-        else{
-            document.getElementById("errorNombre").style.display="none";        
-        }       
     }
 }
 
-function validarTelefono(){
-    let telefono=document.getElementById("telefono").value;
-    console.log(telefono);
-    let formato=/^3[0-9]{2}-[0-9]{4}-[0-9]{3}$/;
-    if(telefono==""){
-        document.getElementById("errorTelefono").style.display="block";
-        document.getElementById("errorTelefono").innerHTML="El campo es obligatorio";
-    }
-    else{ if(!formato.test(telefono)){
-        document.getElementById("errorTelefono").style.display="block";
-        document.getElementById("errorTelefono").innerHTML="El formato debe ser 3XX-XXXX-XXX";
-        }
-        else{
-            document.getElementById("errorTelefono").style.display="none";        
-        }       
-    }
-}
-
-document.getElementById("nombre").addEventListener("blur",validarNombre);
-document.getElementById("telefono").addEventListener("blur",validarTelefono);
-
-function enviarFormulario(){
-    console.log("Enviando formulario");
-}
-document.getElementById("btnEnviar").addEventListener("click",enviarFormulario);
+let pila=new Pila();
+pila.agregarElementoPila(15);
+pila.agregarElementoPila(20);
+pila.agregarElementoPila(25);
+pila.imprimir();
+console.log(pila);
