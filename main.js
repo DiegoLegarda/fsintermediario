@@ -156,7 +156,7 @@ function desplegarTareas(){
     let tareas=Lista, arreglo, pila, cola;
 }
 */
-
+/*
 class Nodo{
     constructor(valor){
         this.valor=valor;
@@ -275,8 +275,79 @@ arbol.agregarElemento(5);
 arbol.agregarElemento(2);
 arbol.agregarElemento(35);
 console.log(arbol.raiz);
-/*console.log(arbol.buscar(25))*/
+/*console.log(arbol.buscar(25))
 
 console.log(arbol.enOrden());
 console.log(arbol.enPreOrden());
 console.log(arbol.enPostOrden());
+*/
+
+//vamos a contruir un grafo para 5 ciudades
+
+class Nodo{
+    constructor(valor){
+        this.valor=valor;
+        this.adyacentes=[];
+        this.valoresAristas=[];
+    }
+}
+
+class Grafo{
+    constructor(){
+        this.nodos=[];
+    }
+    agregarNodo(valor){
+        let nodo=new Nodo(valor);
+        this.nodos.push(nodo);
+    }
+    agregarArista(valor1,valor2,valorArista){
+        let nodo1=this.buscarNodo(valor1);
+        let nodo2=this.buscarNodo(valor2);
+        nodo1.adyacentes.push(nodo2);
+        nodo2.adyacentes.push(nodo1);
+        nodo1.valoresAristas.push(valorArista);
+        nodo2.valoresAristas.push(valorArista);
+    }
+    buscarNodo(valor){
+        for(let i=0;i<this.nodos.length;i++){
+            if(this.nodos[i].valor==valor){
+                return this.nodos[i];
+            }
+        }
+        return null;
+    }
+    buscarArista(valor1,valor2){
+        let nodo1=this.buscarNodo(valor1);
+        let nodo2=this.buscarNodo(valor2);
+        for(let i=0;i<nodo1.adyacentes.length;i++){
+            if(nodo1.adyacentes[i].valor==valor2){
+                return nodo1.valoresAristas[i];
+            }           
+        }
+        return null;
+    }
+}   
+let grafo=new Grafo();
+grafo.agregarNodo("A");
+grafo.agregarNodo("B");
+grafo.agregarNodo("C");
+grafo.agregarNodo("D");
+grafo.agregarNodo("E");
+grafo.agregarNodo("F");
+grafo.agregarNodo("G");
+grafo.agregarNodo("H");
+grafo.agregarArista("A","B",200);
+grafo.agregarArista("A","C",300);
+grafo.agregarArista("A","D",400);
+grafo.agregarArista("B","E",500);
+grafo.agregarArista("B","F",500);
+grafo.agregarArista("C","G",100);
+grafo.agregarArista("D","H",10);
+
+if(grafo.buscarArista("E","B")!=null){
+    console.log("La arista existe");
+    console.log("El valor de la arista es:"+grafo.buscarArista("B","E"));
+}
+else{
+    console.log("La arista no existe");
+}
