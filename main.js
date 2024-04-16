@@ -351,3 +351,6 @@ if(grafo.buscarArista("E","B")!=null){
 else{
     console.log("La arista no existe");
 }
+
+
+
