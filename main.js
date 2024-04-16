@@ -352,5 +352,6 @@ else{
     console.log("La arista no existe");
 }
 
-
+//realizar una funcion que permita encontrar
+//la distancia como suma de aristas entre dos nodos que no estan conectados directamente
 
