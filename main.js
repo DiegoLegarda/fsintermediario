@@ -91,6 +91,7 @@ agregarElemento(25);
 mostrar();
 console.log(primero);
 */
+/*
 class Nodo{
     constructor(valor){
         this.valor=valor;
@@ -124,3 +125,114 @@ pila.agregarElementoPila(20);
 pila.agregarElementoPila(25);
 pila.imprimir();
 console.log(pila);
+*/
+/*
+class Cola{
+    constructor(){
+        this.cola=[];
+    }
+    agregarElementoCola(valor){
+        this.cola.push(valor);
+    }
+    eliminarElementoCola(){
+        return this.cola.shift();
+    }
+    imprimir(){
+        console.log(this.cola);
+    }
+}
+
+let cola=new Cola();
+cola.agregarElementoCola("pera");
+cola.agregarElementoCola("limon");
+cola.agregarElementoCola("manzana");
+cola.imprimir();*/
+/*
+function ingresarTarea(){
+    let tarea=document.getElementById('tarea').value;    
+}
+
+function desplegarTareas(){
+    let tareas=Lista, arreglo, pila, cola;
+}
+*/
+
+class Nodo{
+    constructor(valor){
+        this.valor=valor;
+        this.izquierda=null;
+        this.derecha=null;
+    }
+}
+
+class Arbol{
+   constructor(){
+    this.raiz=null;
+   }
+   agregarElemento(valor){
+    let nuevo=new Nodo(valor);    
+    if(this.raiz==null){
+        this.raiz=nuevo;        
+    }
+    else
+    {
+        this.agregar(nuevo,this.raiz);
+    }
+   }
+
+   agregar(nuevo,nodo){
+        if(nuevo.valor<nodo.valor){
+            if(nodo.izquierda==null){
+                nodo.izquierda=nuevo;
+            }
+            else{
+                this.agregar(nuevo,nodo.izquierda);            
+            }
+            }
+         else{                
+            if(nodo.derecha==null){
+                nodo.derecha=nuevo;
+            }
+            else{
+                this.agregar(nuevo,nodo.derecha);
+            }
+            }
+    }
+
+    buscar(valor){
+        return this.buscarElemento(valor,this.raiz);
+    }
+
+    buscarElemento(valor,nodo){
+        if(nodo!=null){
+            if(valor<nodo.valor){
+                return this.buscarElemento(valor,nodo.izquierda);
+            }
+            else{
+                if(valor>nodo.valor){
+                    return this.buscarElemento(valor,nodo.derecha);
+                }
+                else{
+                    return nodo;
+                }
+            }
+        }
+    }
+       
+}
+
+
+
+
+
+
+
+let arbol=new Arbol();
+arbol.agregarElemento(15);
+arbol.agregarElemento(10);
+arbol.agregarElemento(25);
+arbol.agregarElemento(5);
+arbol.agregarElemento(2);
+arbol.agregarElemento(35);
+console.log(arbol.raiz);
+console.log(arbol.buscar(25))
