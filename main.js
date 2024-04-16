@@ -218,7 +218,47 @@ class Arbol{
             }
         }
     }
-       
+    enOrden(){
+        let resultado=[];
+        this.enOrdenAux(this.raiz,resultado);
+        return resultado;
+    }
+
+    enOrdenAux(nodo,resultado){
+        if(nodo!=null){
+            this.enOrdenAux(nodo.izquierda,resultado);
+            resultado.push(nodo.valor);
+            this.enOrdenAux(nodo.derecha,resultado);
+        }
+    }
+
+    enPreOrden(){
+        let resultado=[];
+        this.enPreOrdenAux(this.raiz,resultado);
+        return resultado;
+    }
+
+    enPreOrdenAux(nodo,resultado){
+        if(nodo!=null){
+            resultado.push(nodo.valor);
+            this.enPreOrdenAux(nodo.izquierda,resultado);
+            this.enPreOrdenAux(nodo.derecha,resultado);
+        }
+    }
+
+    enPostOrden(){
+        let resultado=[];
+        this.enPostOrdenAux(this.raiz,resultado);
+        return resultado;
+    }
+     
+    enPostOrdenAux(nodo,resultado){
+        if(nodo!=null){
+            this.enPostOrdenAux(nodo.izquierda,resultado);
+            this.enPostOrdenAux(nodo.derecha,resultado);
+            resultado.push(nodo.valor);
+        }
+    }
 }
 
 
@@ -235,4 +275,8 @@ arbol.agregarElemento(5);
 arbol.agregarElemento(2);
 arbol.agregarElemento(35);
 console.log(arbol.raiz);
-console.log(arbol.buscar(25))
+/*console.log(arbol.buscar(25))*/
+
+console.log(arbol.enOrden());
+console.log(arbol.enPreOrden());
+console.log(arbol.enPostOrden());
