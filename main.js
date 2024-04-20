@@ -1,357 +1,131 @@
-/*
-const frutas=['manzana','pera','uva','sandia','melon'];
-console.log(frutas);
-console.log(frutas.length);
-frutas.push('platano');
-console.log(frutas);
-frutas.pop();
-console.log(frutas);
-frutas.shift();
-console.log(frutas);
-frutas.unshift('platano');
-console.log(frutas);
-frutas.sort();
-console.log(frutas);
-frutas.reverse();
-console.log(frutas);
-frutas.splice(1,2);
-console.log(frutas);
-frutas.splice(1,0,'platano','mango');
-console.log(frutas);
-const frutas2=frutas.toSpliced(1,2);
-console.log(frutas2);
-console.log(frutas);
-frutas.splice(3,0,'maracuya');
-console.log(frutas);
-let elemento=frutas.pop();
-console.log(elemento); 
-let elemento2=frutas.shift();
-console.log(elemento2); 
-let cadena=frutas.toString();
-console.log(cadena); 
-let cadena2=frutas.join(' - ');
-console.log(cadena2);
-let cadena3=frutas.concat(frutas2);
-console.log(cadena3);
 
+//**********************************************************
+// Construcción de grafo
+const grafo = {
+    'Bogotá': [{ destino: 'Medellin', peso: 410 }, { destino: 'Ibagué', peso: 210 }, { destino: 'Villavicencio', peso: 122 }, { destino: 'Tunja', peso: 139 }],
+    'Medellin': [{ destino: 'Tunja', peso: 413 }, { destino: 'Baranquilla', peso: 723 }],
+    'Ibagué': [{ destino: 'Cali', peso: 253 }, { destino: 'Neiva', peso: 211 }],
+    'Villavicencio': [{ destino: 'Yopal', peso: 261 }]
+};
 
-console.log(cadena3);
-let cadena4=cadena3.slice(4,5);
-console.log(cadena4); 
+console.log(grafo);
 
-const Persona={nombre:"Juan",apellido:"Perez",edad:20,fechaNacimiento:"17/11/1996"};
-console.log(Persona);
-console.log(Persona.nombre);
-console.log(Persona.apellido);
-console.log(Persona.edad);
-console.log(Persona.fechaNacimiento);
-Persona.edad=21;
-console.log(Persona);
-Persona.edad=null;
-console.log(Persona);
+//***********************************************************
+//  FUnciones de busqueda
 
-
-const arreglobidimensional=[[1,2,3],[4,5,6],[7,8,9]];
-let arreglounidimensional=arreglobidimensional.flat();
-console.log(arreglobidimensional);
-console.log(arreglounidimensional);
-*/
-/*
-class Nodo{
-    constructor(valor){
-        this.valor=valor;
-        this.siguiente=null;
-    }
-}
-let primero=null;
-
-function agregarElemento(valor){
-    let nuevo=new Nodo(valor);
-   nuevo.siguiente=primero;
-   primero=nuevo;
-}
-
-function mostrar(){
-    let actual=primero;
-    while(actual!=null){
-        console.log(actual.valor);
-        actual=actual.siguiente;
-    }
-}
-
-function eliminar(){
-    primero=primero.siguiente;
-}
-
-
-agregarElemento(15);
-agregarElemento(20);
-agregarElemento(25);
-  
-mostrar();
-console.log(primero);
-*/
-/*
-class Nodo{
-    constructor(valor){
-        this.valor=valor;
-        this.siguiente=null;
-    }
-}
-let primero=null;
- 
-class Pila{
-    constructor(){
-        this.tope=null;
-    }
-
-    agregarElementoPila(valor){
-        let nuevo=new Nodo(valor);
-        nuevo.siguiente=this.tope;
-        this.tope=nuevo;
-    }
-    imprimir(){
-        let actual=this.tope;
-        while(actual!=null){
-            console.log(actual.valor);
-            actual=actual.siguiente;
+function busquedaConSuma(grafo, inicio, objetivo) {
+    const cola = [{ nodo: inicio, suma: 0 }];
+    const visitados = new Set();
+    while (cola.length > 0) {
+        const { nodo, suma } = cola.shift();
+        if (nodo === objetivo) {
+            return suma;
         }
-    }
-}
-
-let pila=new Pila();
-pila.agregarElementoPila(15);
-pila.agregarElementoPila(20);
-pila.agregarElementoPila(25);
-pila.imprimir();
-console.log(pila);
-*/
-/*
-class Cola{
-    constructor(){
-        this.cola=[];
-    }
-    agregarElementoCola(valor){
-        this.cola.push(valor);
-    }
-    eliminarElementoCola(){
-        return this.cola.shift();
-    }
-    imprimir(){
-        console.log(this.cola);
-    }
-}
-
-let cola=new Cola();
-cola.agregarElementoCola("pera");
-cola.agregarElementoCola("limon");
-cola.agregarElementoCola("manzana");
-cola.imprimir();*/
-/*
-function ingresarTarea(){
-    let tarea=document.getElementById('tarea').value;    
-}
-
-function desplegarTareas(){
-    let tareas=Lista, arreglo, pila, cola;
-}
-*/
-/*
-class Nodo{
-    constructor(valor){
-        this.valor=valor;
-        this.izquierda=null;
-        this.derecha=null;
-    }
-}
-
-class Arbol{
-   constructor(){
-    this.raiz=null;
-   }
-   agregarElemento(valor){
-    let nuevo=new Nodo(valor);    
-    if(this.raiz==null){
-        this.raiz=nuevo;        
-    }
-    else
-    {
-        this.agregar(nuevo,this.raiz);
-    }
-   }
-
-   agregar(nuevo,nodo){
-        if(nuevo.valor<nodo.valor){
-            if(nodo.izquierda==null){
-                nodo.izquierda=nuevo;
-            }
-            else{
-                this.agregar(nuevo,nodo.izquierda);            
-            }
-            }
-         else{                
-            if(nodo.derecha==null){
-                nodo.derecha=nuevo;
-            }
-            else{
-                this.agregar(nuevo,nodo.derecha);
-            }
-            }
-    }
-
-    buscar(valor){
-        return this.buscarElemento(valor,this.raiz);
-    }
-
-    buscarElemento(valor,nodo){
-        if(nodo!=null){
-            if(valor<nodo.valor){
-                return this.buscarElemento(valor,nodo.izquierda);
-            }
-            else{
-                if(valor>nodo.valor){
-                    return this.buscarElemento(valor,nodo.derecha);
-                }
-                else{
-                    return nodo;
+        if (!visitados.has(nodo)) {
+            visitados.add(nodo);
+            if (grafo[nodo]) {
+                for (const arista of grafo[nodo]) {
+                    cola.push({ nodo: arista.destino, suma: suma + arista.peso });
                 }
             }
         }
     }
-    enOrden(){
-        let resultado=[];
-        this.enOrdenAux(this.raiz,resultado);
-        return resultado;
-    }
-
-    enOrdenAux(nodo,resultado){
-        if(nodo!=null){
-            this.enOrdenAux(nodo.izquierda,resultado);
-            resultado.push(nodo.valor);
-            this.enOrdenAux(nodo.derecha,resultado);
-        }
-    }
-
-    enPreOrden(){
-        let resultado=[];
-        this.enPreOrdenAux(this.raiz,resultado);
-        return resultado;
-    }
-
-    enPreOrdenAux(nodo,resultado){
-        if(nodo!=null){
-            resultado.push(nodo.valor);
-            this.enPreOrdenAux(nodo.izquierda,resultado);
-            this.enPreOrdenAux(nodo.derecha,resultado);
-        }
-    }
-
-    enPostOrden(){
-        let resultado=[];
-        this.enPostOrdenAux(this.raiz,resultado);
-        return resultado;
-    }
-     
-    enPostOrdenAux(nodo,resultado){
-        if(nodo!=null){
-            this.enPostOrdenAux(nodo.izquierda,resultado);
-            this.enPostOrdenAux(nodo.derecha,resultado);
-            resultado.push(nodo.valor);
-        }
-    }
+    return -1;
 }
 
+function bfs(grafo, origen, destino) {
+    const visitados = {};
+    const cola = [];
+    const camino = {};
+    const distancias = {};
 
+    visitados[origen] = true;
+    cola.push(origen);
+    distancias[origen] = 0;
 
+    while (cola.length > 0) {
+        const nodoActual = cola.shift();
+        if (nodoActual === destino) {
+            const ruta = [];
+            let nodo = destino;
+            while (nodo !== origen) {
+                ruta.unshift(nodo);
+                nodo = camino[nodo];
+            }
+            ruta.unshift(origen);
+            return { camino: ruta, distancia: distancias[destino] };
+        }
 
-
-
-
-let arbol=new Arbol();
-arbol.agregarElemento(15);
-arbol.agregarElemento(10);
-arbol.agregarElemento(25);
-arbol.agregarElemento(5);
-arbol.agregarElemento(2);
-arbol.agregarElemento(35);
-console.log(arbol.raiz);
-/*console.log(arbol.buscar(25))
-
-console.log(arbol.enOrden());
-console.log(arbol.enPreOrden());
-console.log(arbol.enPostOrden());
-*/
-
-//vamos a contruir un grafo para 5 ciudades
-
-class Nodo{
-    constructor(valor){
-        this.valor=valor;
-        this.adyacentes=[];
-        this.valoresAristas=[];
-    }
-}
-
-class Grafo{
-    constructor(){
-        this.nodos=[];
-    }
-    agregarNodo(valor){
-        let nodo=new Nodo(valor);
-        this.nodos.push(nodo);
-    }
-    agregarArista(valor1,valor2,valorArista){
-        let nodo1=this.buscarNodo(valor1);
-        let nodo2=this.buscarNodo(valor2);
-        nodo1.adyacentes.push(nodo2);
-        nodo2.adyacentes.push(nodo1);
-        nodo1.valoresAristas.push(valorArista);
-        nodo2.valoresAristas.push(valorArista);
-    }
-    buscarNodo(valor){
-        for(let i=0;i<this.nodos.length;i++){
-            if(this.nodos[i].valor==valor){
-                return this.nodos[i];
+        for (let vecino of grafo[nodoActual] || []) {
+            if (!visitados[vecino.destino]) {
+                visitados[vecino.destino] = true;
+                cola.push(vecino.destino);
+                camino[vecino.destino] = nodoActual;
+                distancias[vecino.destino] = distancias[nodoActual] + vecino.peso;
             }
         }
-        return null;
     }
-    buscarArista(valor1,valor2){
-        let nodo1=this.buscarNodo(valor1);
-        let nodo2=this.buscarNodo(valor2);
-        for(let i=0;i<nodo1.adyacentes.length;i++){
-            if(nodo1.adyacentes[i].valor==valor2){
-                return nodo1.valoresAristas[i];
-            }           
-        }
-        return null;
-    }
-}   
-let grafo=new Grafo();
-grafo.agregarNodo("A");
-grafo.agregarNodo("B");
-grafo.agregarNodo("C");
-grafo.agregarNodo("D");
-grafo.agregarNodo("E");
-grafo.agregarNodo("F");
-grafo.agregarNodo("G");
-grafo.agregarNodo("H");
-grafo.agregarArista("A","B",200);
-grafo.agregarArista("A","C",300);
-grafo.agregarArista("A","D",400);
-grafo.agregarArista("B","E",500);
-grafo.agregarArista("B","F",500);
-grafo.agregarArista("C","G",100);
-grafo.agregarArista("D","H",10);
-
-if(grafo.buscarArista("E","B")!=null){
-    console.log("La arista existe");
-    console.log("El valor de la arista es:"+grafo.buscarArista("B","E"));
-}
-else{
-    console.log("La arista no existe");
+    return { camino: [], distancia: undefined };
 }
 
-//realizar una funcion que permita encontrar
-//la distancia como suma de aristas entre dos nodos que no estan conectados directamente
 
+//************************************************************
+//      Construccion de la lista
+const selectNodos = document.getElementById('ciudades');
+const nodosUnicos = new Set();
+for (const nodoOrigen in grafo) {
+    nodosUnicos.add(nodoOrigen);
+    grafo[nodoOrigen].forEach(destino => {
+        nodosUnicos.add(destino.destino);
+    });
+}
+
+const nodosOrdenados = Array.from(nodosUnicos).sort();
+nodosOrdenados.forEach(nodo => {
+    const option = document.createElement('option');
+    option.value = nodo; 
+    option.textContent = nodo; 
+    selectNodos.appendChild(option);
+});
+
+//*************************************************************
+//          Funciones con eventos
+
+function busqueda() {
+    const origen = 'Bogotá';
+    const selectDestino = document.getElementById('ciudades');
+    const destino = selectDestino.value;
+    console.log('Valor seleccionado:', destino);
+    const { camino, distancia } = bfs(grafo, origen, destino);
+    console.log('Camino encontrado:', camino.length > 0 ? camino.join(' -> ') : 'No se encontró un camino.');
+    if(camino!=0){
+        document.getElementById('ruta').textContent = `La ruta es: ${camino.join(' -> ')}`;
+    }
+    console.log('Distancia del camino:', distancia !== undefined ? distancia : 'No se encontró un camino.');
+    let peso=document.getElementById('peso').value;
+    console.log('Valor a pagar:',calculoValor(distancia,peso));
+    let valorPagar=calculoValor(distancia,peso);
+    const formatoPesos = valorPagar.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+    document.getElementById('valorenvio').textContent = `El precio a pagar es es: ${formatoPesos}`;
+    document.getElementById('tiempo').textContent = `El tiempo de entrega es de: ${calcularDiasEntrega(distancia)} días`;
+}
+
+function calculoValor(distancia, peso){
+    let valor=10000+parseInt((distancia*152.68)*(peso/10))
+    return valor;
+}
+
+function calcularDiasEntrega(distancia) {
+    const dias = Math.ceil(distancia / 100);
+    return dias;
+}
+
+function clear(){
+    document.getElementById('ruta').textContent = '';
+    document.getElementById('valorenvio').textContent = '';
+    document.getElementById('tiempo').textContent = '';    
+}
+
+document.getElementById('enviar').addEventListener('click', busqueda);
+document.getElementById('ciudades').addEventListener('change', clear);
+document.getElementById('peso').addEventListener('change', clear);

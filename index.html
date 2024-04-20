@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="estilos.css">
+  <title>Prueba de Grafos</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
-<body >
-    <h1>Ejemplo de formulario</h1>
-    <br>
-    <br>
+
+<body>
+  <div class="container">
+  <h1>Prueba de Grafos</h1>
+  
+</div>
+<br>
+<br>
+  <div class="container">
     <form>
-        <input type="text" id="tarea" name="tarea" placeholder="Ingrese nueva Tarea">
-        <p id="errorTarea" style="display:none"></p>
-        
+      <label for="peso">Ingrese Peso:</label>
+      <input type="number" id="peso" name="peso" min="1" max="100" step="1" value="1" placeholder="Ingrese peso">
+      <br>
+      <br>
+      <label for="ciudades">Seleccione Ciudad:</label>
+      <select id="ciudades">
+      </select>
+      <p id="ruta"></p>
+      <p id="valorenvio"></p>
+      <p id="tiempo"></p>
     </form>
-    <button id="btnEnviar">Ingresar</button>    
-    <script  src="main.js"></script>
+      <button id="enviar">Enviar</button>
+    
+  </div>
+
+  <script src="main.js" defer></script>
+
 </body>
+
 </html>
